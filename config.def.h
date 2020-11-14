@@ -1,17 +1,17 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const char font[]        = "monospace:size=9";
+static const char font[]        = "Fira Code:size=12:antialias=true:autohint=true";
 static const char* normbgcolor  = "#222222";
 static const char* normfgcolor  = "#cccccc";
-static const char* selbgcolor   = "#555555";
+static const char* selbgcolor   = "#000000";
 static const char* selfgcolor   = "#ffffff";
 static const char* urgbgcolor   = "#111111";
 static const char* urgfgcolor   = "#cc0000";
 static const char before[]      = "<";
 static const char after[]       = ">";
 static const char titletrim[]   = "...";
-static const int  tabwidth      = 200;
+static const int  tabwidth      = 250;
 static const Bool foreground    = True;
 static       Bool urgentswitch  = False;
 
@@ -33,7 +33,7 @@ static Bool npisrelative  = False;
         } \
 }
 
-#define MODKEY ControlMask
+#define MODKEY AltMask
 static Key keys[] = {
 	/* modifier             key        function     argument */
 	{ MODKEY|ShiftMask,     XK_Return, focusonce,   { 0 } },
@@ -62,5 +62,5 @@ static Key keys[] = {
 	{ MODKEY,               XK_u,      focusurgent, { 0 } },
 	{ MODKEY|ShiftMask,     XK_u,      toggle,      { .v = (void*) &urgentswitch } },
 
-	{ 0,                    XK_F11,    fullscreen,  { 0 } },
+	{ MODKEY,               XK_F11,    fullscreen,  { 0 } },
 };
