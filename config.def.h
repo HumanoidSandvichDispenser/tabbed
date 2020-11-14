@@ -3,7 +3,7 @@
 /* appearance */
 static const char font[]        = "Fira Code:size=12:antialias=true:autohint=true";
 static const char* normbgcolor  = "#ababab";
-static const char* normfgcolor  = "#ffffff";
+static const char* normfgcolor  = "#000000";
 static const char* selbgcolor   = "#000000";
 static const char* selfgcolor   = "#ffffff";
 static const char* urgbgcolor   = "#111111";
