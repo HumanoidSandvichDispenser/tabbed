@@ -2,9 +2,7 @@
 
 /* appearance */
 static const char font[]        = "Fira Code:size=12:antialias=true:autohint=true";
-static const char* normbgcolor  = "#ababab";
-static const char* normfgcolor  = "#000000";
-static const char* selbgcolor   = "#000000";
+static const char* normbgcolor  = "#ababab"; static const char* normfgcolor  = "#000000"; static const char* selbgcolor   = "#000000";
 static const char* selfgcolor   = "#ffffff";
 static const char* urgbgcolor   = "#111111";
 static const char* urgfgcolor   = "#cc0000";
@@ -37,7 +35,7 @@ static Bool npisrelative  = False;
 static Key keys[] = {
 	/* modifier             key        function     argument */
 	{ MODKEY|ShiftMask,     XK_Return, focusonce,   { 0 } },
-	{ MODKEY|ShiftMask,     XK_Return, spawn,       { 0 } },
+	{ MODKEY|ShiftMask,     XK_Return, spawn,       { 1 } },
 
 	{ MODKEY|ShiftMask,     XK_l,      rotate,      { .i = +1 } },
 	{ MODKEY|ShiftMask,     XK_h,      rotate,      { .i = -1 } },
