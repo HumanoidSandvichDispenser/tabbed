@@ -2,10 +2,13 @@
 
 /* appearance */
 static const char font[]        = "Fira Code:size=12:antialias=true:autohint=true";
-static const char* normbgcolor  = "#ababab"; static const char* normfgcolor  = "#000000"; static const char* selbgcolor   = "#000000";
+static const char* normbgcolor  = "#ababab";
+static const char* normfgcolor  = "#000000";
+static const char* selbgcolor   = "#000000";
 static const char* selfgcolor   = "#ffffff";
 static const char* urgbgcolor   = "#111111";
-static const char* urgfgcolor   = "#cc0000"; static const char before[]      = "<";
+static const char* urgfgcolor   = "#cc0000";
+static const char before[]      = "<";
 static const char after[]       = ">";
 static const char titletrim[]   = "...";
 static const int  tabwidth      = 250;
@@ -17,8 +20,8 @@ static       Bool urgentswitch  = False;
  * then the current position is changed + newposition. If npisrelative
  * is False, then newposition is an absolute position.
  */
-static int  newposition   = 0;
-static Bool npisrelative  = False;
+static int  newposition   = 1;
+static Bool npisrelative  = True;
 
 #define SETPROP(p) { \
         .v = (char *[]){ "/bin/sh", "-c", \
