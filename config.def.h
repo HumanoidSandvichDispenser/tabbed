@@ -2,7 +2,7 @@
 
 /* appearance */
 static const char font[]        = "Fira Code:size=12:antialias=true:autohint=true";
-static const char* normbgcolor  = "#222222";
+static const char* normbgcolor  = "#ababab";
 static const char* normfgcolor  = "#cccccc";
 static const char* selbgcolor   = "#000000";
 static const char* selfgcolor   = "#ffffff";
@@ -21,7 +21,7 @@ static       Bool urgentswitch  = False;
  * is False, then newposition is an absolute position.
  */
 static int  newposition   = 0;
-static Bool npisrelative  = True;
+static Bool npisrelative  = False;
 
 #define SETPROP(p) { \
         .v = (char *[]){ "/bin/sh", "-c", \
