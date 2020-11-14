@@ -21,7 +21,7 @@ static       Bool urgentswitch  = False;
  * is False, then newposition is an absolute position.
  */
 static int  newposition   = 0;
-static Bool npisrelative  = False;
+static Bool npisrelative  = True;
 
 #define SETPROP(p) { \
         .v = (char *[]){ "/bin/sh", "-c", \
