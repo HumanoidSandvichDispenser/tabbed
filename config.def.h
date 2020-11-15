@@ -64,3 +64,8 @@ static Key keys[] = {
 
 	{ MODKEY,               XK_F11,    fullscreen,  { 0 } },
 };
+
+static Key keyreleases[] = {
+	/* modifier             key          function     argument */
+	{ MODKEY,               XK_Tab,	     showbar,     { .i = 0 } },
+};
