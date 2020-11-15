@@ -64,7 +64,7 @@ static Key keys[] = {
 
 	{ 0,                    XK_F11,    fullscreen,  { 0 } },
 
-	{ MODKEY,               Tab,       showbar,    { .i = 1 } },
+	{ MODKEY,               XK_Tab,       showbar,    { .i = 1 } },
 	{ MODKEY|ShiftMask,     XK_b,      showbar,    { .i = 1 } },
 	{ MODKEY|ShiftMask,     XK_h,      showbar,    { .i = 0 } },
 };
