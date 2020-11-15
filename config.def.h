@@ -37,12 +37,12 @@ static Bool npisrelative  = False;
 static Key keys[] = {
 	/* modifier             key        function     argument */
 	{ MODKEY|ShiftMask,     XK_Return, focusonce,   { 0 } },
-	{ MODKEY,               XK_t,      spawn,       { 0 } },
+	{ MODKEY,               XK_Return,      spawn,       { 0 } },
 
-	{ MODKEY|ShiftMask,     XK_l,      rotate,      { .i = +1 } },
-	{ MODKEY|ShiftMask,     XK_h,      rotate,      { .i = -1 } },
-	{ MODKEY|ShiftMask,     XK_j,      movetab,     { .i = -1 } },
-	{ MODKEY|ShiftMask,     XK_k,      movetab,     { .i = +1 } },
+	{ MODKEY,     XK_l,      rotate,      { .i = +1 } },
+	{ MODKEY,     XK_h,      rotate,      { .i = -1 } },
+	{ MODKEY,     XK_j,      movetab,     { .i = -1 } },
+	{ MODKEY,     XK_k,      movetab,     { .i = +1 } },
 
 	{ MODKEY,               XK_grave,  spawn,       SETPROP("_TABBED_SELECT_TAB") },
 	{ MODKEY,               XK_1,      move,        { .i = 0 } },
