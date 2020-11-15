@@ -43,7 +43,6 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,     XK_h,      rotate,      { .i = -1 } },
 	{ MODKEY|ShiftMask,     XK_j,      movetab,     { .i = -1 } },
 	{ MODKEY|ShiftMask,     XK_k,      movetab,     { .i = +1 } },
-	{ MODKEY,               XK_Tab,    rotate,      { .i = 0 } },
 
 	{ MODKEY,               XK_grave,  spawn,       SETPROP("_TABBED_SELECT_TAB") },
 	{ MODKEY,               XK_1,      move,        { .i = 0 } },
@@ -67,10 +66,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,     XK_b,      showbar,    { .i = 1 } },
 	{ MODKEY|ShiftMask,     XK_h,      showbar,    { .i = 0 } },
 
-	{ MODKEY,               XK_Tab,	     showbar,     { .i = 0 } },
+	{ MODKEY,               XK_Tab,	     showbar,     { .i = 1 } },
 };
 
 static Key keyreleases[] = {
 	/* modifier             key          function     argument */
-	{ MODKEY,               XK_Tab,       showbar,    { .i = 1 } },
+	{ MODKEY,               XK_Tab,       showbar,    { .i = 0 } },
 };
