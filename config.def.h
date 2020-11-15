@@ -63,9 +63,14 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,     XK_u,      toggle,      { .v = (void*) &urgentswitch } },
 
 	{ MODKEY,               XK_F11,    fullscreen,  { 0 } },
+
+	{ MODKEY|ShiftMask,     XK_b,      showbar,    { .i = 1 } },
+	{ MODKEY|ShiftMask,     XK_h,      showbar,    { .i = 0 } },
+
+	{ MODKEY,               XK_Tab,	     showbar,     { .i = 0 } },
 };
 
 static Key keyreleases[] = {
 	/* modifier             key          function     argument */
-	{ MODKEY,               XK_Tab,	     showbar,     { .i = 0 } },
+	{ MODKEY,               XK_Tab,       showbar,    { .i = 1 } },
 };
