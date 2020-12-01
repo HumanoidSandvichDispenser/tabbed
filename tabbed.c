@@ -1159,7 +1159,7 @@ setup(void)
 	XMapRaised(dpy, win);
 	XSelectInput(dpy, win, SubstructureNotifyMask | FocusChangeMask |
 	             ButtonPressMask | ExposureMask | KeyPressMask |
-+	             KeyReleaseMask | PropertyChangeMask | StructureNotifyMask |
+	             KeyReleaseMask | PropertyChangeMask | StructureNotifyMask |
 	             SubstructureRedirectMask);
 	xerrorxlib = XSetErrorHandler(xerror);
 
@@ -1476,6 +1476,7 @@ xrdb_load(void)
 
 void
 reload(int sig) {
+
 	xrdb_load();
 
 	signal(SIGUSR1, reload);
