@@ -1470,6 +1470,8 @@ xrdb_load(void)
 		XRESOURCE_LOAD_STRING("selbgcolor", selbgcolor);
 		XRESOURCE_LOAD_STRING("selfgcolor", selfgcolor);
 
+		XRESOURCE_LOAD_STRING("font", font);
+
 	}
 	XFlush(dpy);
 }

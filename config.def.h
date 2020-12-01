@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const char font[]        = "Fira Code:size=12:antialias=true:autohint=true";
+static const char* font         = "Fira Code:size=12:antialias=true:autohint=true";
 static const char* normbgcolor  = "#ababab";
 static const char* normfgcolor  = "#000000";
 static const char* selbgcolor   = "#000000";
