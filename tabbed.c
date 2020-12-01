@@ -150,6 +150,7 @@ static int xerror(Display *dpy, XErrorEvent *ee);
 static void xsettitle(Window w, const char *str);
 static void xseticon(void);
 static void xrdb_load(void);
+static void reload(int sig);
 
 /* variables */
 static int screen;
@@ -1478,8 +1479,13 @@ xrdb_load(void)
 
 void
 reload(int sig) {
-
 	xrdb_load();
+
+	dc.norm[ColFG] = getcolor(normfgcolor);
+	dc.sel[ColBG] = getcolor(selbgcolor);
+	dc.sel[ColFG] = getcolor(selfgcolor);
+	dc.urg[ColBG] = getcolor(urgbgcolor);
+	dc.urg[ColFG] = getcolor(urgfgcolor);
 
 	signal(SIGUSR1, reload);
 }
@@ -1566,7 +1572,7 @@ main(int argc, char *argv[])
 		die("%s: cannot open display\n", argv0);
 
 	xrdb_load();
- 	signal(SIGUSR1, reload);
+	signal(SIGUSR1, reload);
 	setup();
 	printf("0x%lx\n", win);
 	fflush(NULL);
