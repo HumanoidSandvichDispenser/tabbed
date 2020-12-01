@@ -16,6 +16,7 @@
 #include <X11/Xutil.h>
 #include <X11/XKBlib.h>
 #include <X11/Xft/Xft.h>
+#include <X11/Xresource.h>
 
 #include "arg.h"
 #include "icon.h"
@@ -47,6 +48,15 @@
 #define LENGTH(x)               (sizeof((x)) / sizeof(*(x)))
 #define CLEANMASK(mask)         (mask & ~(numlockmask | LockMask))
 #define TEXTW(x)                (textnw(x, strlen(x)) + dc.font.height)
+
+#define XRESOURCE_LOAD_META(NAME)					\
+	if(!XrmGetResource(xrdb, "tabbed." NAME, "tabbed." NAME, &type, &ret))	\
+		XrmGetResource(xrdb, "*." NAME, "*." NAME, &type, &ret); \
+	if (ret.addr != NULL && !strncmp("String", type, 64))
+
+#define XRESOURCE_LOAD_STRING(NAME, DST)	\
+	XRESOURCE_LOAD_META(NAME)		\
+		DST = ret.addr;
 
 enum { ColFG, ColBG, ColLast };       /* color */
 enum { WMProtocols, WMDelete, WMName, WMState, WMFullscreen,
@@ -139,6 +149,7 @@ static void updatetitle(int c);
 static int xerror(Display *dpy, XErrorEvent *ee);
 static void xsettitle(Window w, const char *str);
 static void xseticon(void);
+static void xrdb_load(void);
 
 /* variables */
 static int screen;
@@ -1434,6 +1445,42 @@ usage(void)
 	    "       [-u color] [-U color] command...\n", argv0);
 }
 
+void
+xrdb_load(void)
+{
+	/* XXX */
+	char *xrm;
+	char *type;
+	XrmDatabase xrdb;
+	XrmValue ret;
+	Display *dpy;
+
+	if(!(dpy = XOpenDisplay(NULL)))
+		die("Can't open display\n");
+
+	XrmInitialize();
+	xrm = XResourceManagerString(dpy);
+
+	if (xrm != NULL) {
+		xrdb = XrmGetStringDatabase(xrm);
+
+		XRESOURCE_LOAD_STRING("normbgcolor", normbgcolor);
+		XRESOURCE_LOAD_STRING("normfgcolor", normfgcolor);
+
+		XRESOURCE_LOAD_STRING("selbgcolor", selbgcolor);
+		XRESOURCE_LOAD_STRING("selfgcolor", selfgcolor);
+
+	}
+	XFlush(dpy);
+}
+
+void
+reload(int sig) {
+	xrdb_load();
+
+	signal(SIGUSR1, reload);
+}
+
 int
 main(int argc, char *argv[])
 {
@@ -1515,6 +1562,8 @@ main(int argc, char *argv[])
 	if (!(dpy = XOpenDisplay(NULL)))
 		die("%s: cannot open display\n", argv0);
 
+	xrdb_load();
+ 	signal(SIGUSR1, reload);
 	setup();
 	printf("0x%lx\n", win);
 	fflush(NULL);
