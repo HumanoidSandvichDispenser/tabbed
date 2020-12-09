@@ -73,13 +73,10 @@ typedef struct {
 	void (*func)(const Arg *);
 	const Arg arg;
 } Key;
-
 typedef struct {
 	int x, y, w, h;
 	XftColor norm[ColLast];
-	XftColor sel[ColLast];
-	XftColor urg[ColLast];
-	Drawable drawable;
+	XftColor sel[ColLast]; XftColor urg[ColLast]; Drawable drawable;
 	GC gc;
 	struct {
 		int ascent;
@@ -151,6 +148,7 @@ static void xsettitle(Window w, const char *str);
 static void xseticon(void);
 static void xrdb_load(void);
 static void reload(int sig);
+static void writecolors(void);
 
 /* variables */
 static int screen;
@@ -193,6 +191,8 @@ static Visual *visual = NULL;
 static unsigned long icon[ICON_WIDTH * ICON_HEIGHT + 2];
 
 char *argv0;
+
+static int colors_changed = 0;
 
 /* configuration, allows nested code to access above variables */
 #include "config.h"
@@ -350,7 +350,6 @@ drawbar(void)
 	char *name = NULL;
 	char tabtitle[256];
 
-
 	nbh = barvisibility ? vbh : 0;
 	if (nbh != bh) {
 		bh = nbh;
@@ -360,6 +359,9 @@ drawbar(void)
 
 	if (bh == 0) return;
 
+	if (colors_changed == 1) {
+		writecolors();
+	}
 
 	if (nclients == 0) {
 		dc.x = 0;
@@ -1480,14 +1482,20 @@ xrdb_load(void)
 void
 reload(int sig) {
 	xrdb_load();
+	colors_changed=1;
+	signal(SIGUSR1, reload);
+}
 
+void
+writecolors(void) {
+	dc.norm[ColBG] = getcolor(normbgcolor);
 	dc.norm[ColFG] = getcolor(normfgcolor);
 	dc.sel[ColBG] = getcolor(selbgcolor);
 	dc.sel[ColFG] = getcolor(selfgcolor);
 	dc.urg[ColBG] = getcolor(urgbgcolor);
 	dc.urg[ColFG] = getcolor(urgfgcolor);
 
-	signal(SIGUSR1, reload);
+	colors_changed = 0;
 }
 
 int
