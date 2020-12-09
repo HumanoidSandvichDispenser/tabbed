@@ -76,7 +76,9 @@ typedef struct {
 typedef struct {
 	int x, y, w, h;
 	XftColor norm[ColLast];
-	XftColor sel[ColLast]; XftColor urg[ColLast]; Drawable drawable;
+	XftColor sel[ColLast];
+	XftColor urg[ColLast];
+	Drawable drawable;
 	GC gc;
 	struct {
 		int ascent;
