@@ -1,4 +1,4 @@
- Serhan's dwm
+ Serhan's tabbed
 
 ## This build mainly includes these features
 
